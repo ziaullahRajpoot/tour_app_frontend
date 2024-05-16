@@ -1,0 +1,21 @@
+/* NavbarComponent.css */
+.nav-item-link {
+    cursor: pointer;
+    color: #007bff; /* Bootstrap primary link color */
+  }
+  
+  .nav-item-link:hover {
+    color: #0056b3; /* Darker shade for hover effect */
+    text-decoration: underline; /* Underline to mimic a hyperlink */
+  }
+  
+  .see-all-notifications {
+    font-weight: bold; /* Make "See all notifications" stand out */
+    cursor: pointer;
+  }
+  
+  /* Optionally, if you want "See all notifications" to have a different background */
+  .see-all-notifications:hover {
+    background-color: #f8f9fa; /* Light gray, adjust as per your theme */
+  }
+  

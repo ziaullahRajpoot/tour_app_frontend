@@ -1,0 +1,21 @@
+.inbox-container {
+    width: 100%;
+    max-width: 300px; /* Adjust width as necessary */
+    height: 400px; /* Adjust height as necessary */
+    overflow-y: auto; /* Make inbox scrollable */
+    border: 1px solid #ccc;
+    padding: 0px;
+  }
+  
+  .messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .message-item {
+    background-color: #f9f9f9;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  

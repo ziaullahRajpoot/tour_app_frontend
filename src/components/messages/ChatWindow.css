@@ -1,0 +1,20 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Adjust based on layout, could be a specific height or percentage */
+  }
+  
+  .chat-header {
+    position: sticky;
+    top: 0;
+    background-color: white; /* Or any color that matches your design */
+    z-index: 1;
+    padding: 10px; /* Adjust padding as needed */
+    border-bottom: 1px solid #ccc; /* Optional: adds a border line below the header */
+  }
+  
+  .chat-messages {
+    overflow-y: auto;
+    flex-grow: 1; /* Ensures it takes up the remaining space */
+  }
+  

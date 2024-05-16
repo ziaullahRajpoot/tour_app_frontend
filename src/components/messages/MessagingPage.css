@@ -1,0 +1,60 @@
+.messaging-page {
+    display: grid;
+    grid-template-columns: 2fr 8fr 2fr;
+    gap: 20px; /* Adjust the space between columns */
+  }
+  
+  .clients-list, .chat-window, .client-data {
+    border: 1px solid #ccc; /* Just for visual distinction, remove or adjust as needed */
+    padding: 10px;
+  }
+  .messaging-page {
+    
+    height: 80vh; /* Use viewport height to fill the screen */
+    width: 100%; /* Use viewport width to fill the screen */
+  }
+  
+  .clients-list,
+  .chat-window,
+  .client-data {
+    height: 100%; /* Ensure children take up full height */
+  }
+  
+  .clients-list {
+    flex: 0 0 20%; /* Adjust the width as per requirement */
+    overflow-y: auto; /* For scrolling */
+  }
+  .clients-list {
+     /* Adjust based on your layout */
+    overflow-y: auto; /* Enables vertical scrolling */
+    /* Additional styling */
+  }
+  
+  
+  .chat-window {
+    flex: 0 0 60%; /* Adjust the width as per requirement */
+  }
+  .chat-window {
+     /* Adjust based on your layout */
+    overflow-y: auto; /* Enables vertical scrolling */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Adjust based on layout, could be a specific height or percentage */
+  }
+  
+  
+  .client-data {
+    flex: 0 0 20%; /* Adjust the width as per requirement */
+    overflow-y: auto; /* For scrolling, if needed */
+  }
+   
+  
+  @media (max-width: 768px) {
+    .messaging-page {
+      grid-template-columns: 1fr; /* Stack them on smaller screens */
+    }
+    .clients-list, .chat-window, .client-data {
+      width: 100%;
+    }
+  }
+  

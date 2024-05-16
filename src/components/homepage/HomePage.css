@@ -1,0 +1,81 @@
+/* src/components/HomePage.css */
+
+.input-group-custom {
+    display: flex;
+    width: 100%;
+  }
+  
+  .form-select-custom {
+    flex: 1 1 10%; /* Allocate 10% of the width */
+    margin-right: 0.5rem; /* Optional: add some space between the select and input */
+    padding: 0 1rem 0 1rem ;
+}
+  
+  .form-control-custom {
+    flex: 1 1 90%; /* Allocate the remaining width */
+  }
+
+
+  /* HomePage.css */
+.navbar-collapse.collapse {
+    display: flex !important;
+    flex-grow: 1;
+  }
+  
+  .navbar-nav.mx-auto {
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+/* HomePage.css */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: 15vw; /* Adjust as necessary */
+    object-fit: cover;
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .card-title {
+    margin-bottom: 1.5rem;
+
+  }
+  
+  .card-text:last-child {
+    margin-bottom: 0;
+    margin-top: 1rem;
+  }
+  
+  .card-img-top-container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .like-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2; /* Ensure the button is above the slider images */
+  }
+  
+  /* Add more styles as needed */
+  
+  
+  /* Example media query to adjust layout on smaller screens */
+  @media (max-width: 992px) {
+    .navbar-nav.mx-auto {
+      flex-grow: 0;
+    }
+  }
+  
