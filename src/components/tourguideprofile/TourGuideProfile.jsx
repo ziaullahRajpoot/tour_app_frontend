@@ -1,13 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import tourGuides from '../../data/tourGuides';
 import './TourGuideProfile.css'; // Ensure you have the CSS
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-
 import InboxComponent from '../messages/InboxComponent';
-
 
 function TourGuideProfile() {
   const { tourGuideId } = useParams(); // This will be something like "john-doe"
@@ -22,7 +20,6 @@ function TourGuideProfile() {
   if (!tourGuideDetails) {
     return <div>Tour guide not found</div>;
   }
-
 
   // Slider settings
   const sliderSettings = {
@@ -61,56 +58,54 @@ function TourGuideProfile() {
   ];
 
   return (
-   <div className="tour-guide-page">
-        <div className="tour-guide-profile-container">{/* This wraps the existing profile content */}
-            <div className="tour-guide-profile">
-                <div className="profile-header">
-                    <img src={tourGuideDetails.profilePicture} alt={tourGuideDetails.name} className="profile-picture"/>
-                    <div className="profile-info">
-                        <h2>{tourGuideDetails.name}</h2>
-                        <p className="bio">{tourGuideDetails.bio}</p>
-                    </div>
-                </div>
-                <div className="description-section">
-                    <h3>Description</h3>
-                    <p>{tourGuideDetails.description}</p>
-                </div>
-                <div className="portfolio-section">
-                    <h3>Portfolio</h3>
-                    <Slider {...sliderSettings}>
-                    {tourGuideDetails.portfolio.map((item, index) => (
-                        <div key={index} className="portfolio-item">
-                        {item.type === 'image' ? (
-                            <img src={item.url} alt={`Portfolio item ${index + 1}`} className="portfolio-image" />
-                        ) : (
-                            <video src={item.url} controls className="portfolio-video" />
-                        )}
-                        </div>
-                    ))}
-                    </Slider>
-                </div>
-                <div className="feedback-section">
-                    <h3>Feedback</h3>
-                    <div className="feedback-items">
-                        {tourGuideDetails.feedback.map((feedback, index) => (
-                        <div key={index} className="feedback-item">
-                            <p className="rating">Rating: {feedback.stars} / 5</p>
-                            <p className="comment">{feedback.comment}</p>
-                        </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="bookings-section">
-                    <h3>Bookings</h3>
-                    {/* Implement bookings display as needed */}
-                </div>
+    <div className="tour-guide-page">
+      <div className="tour-guide-profile-container">{/* This wraps the existing profile content */}
+        <div className="tour-guide-profile">
+          <div className="profile-header">
+            <img src={tourGuideDetails.profilePicture} alt={tourGuideDetails.name} className="profile-picture"/>
+            <div className="profile-info">
+              <h2>{tourGuideDetails.name}</h2>
+              <p className="bio">{tourGuideDetails.bio}</p>
+              <Link to={`/tour-guide/${tourGuideId}/edit`} className="btn btn-primary">Edit Profile</Link>
             </div>
+          </div>
+          <div className="description-section">
+            <h3>Description</h3>
+            <p>{tourGuideDetails.description}</p>
+          </div>
+          <div className="portfolio-section">
+            <h3>Portfolio</h3>
+            <Slider {...sliderSettings}>
+              {tourGuideDetails.portfolio.map((item, index) => (
+                <div key={index} className="portfolio-item">
+                  {item.type === 'image' ? (
+                    <img src={item.url} alt={`Portfolio item ${index + 1}`} className="portfolio-image" />
+                  ) : (
+                    <video src={item.url} controls className="portfolio-video" />
+                  )}
+                </div>
+              ))}
+            </Slider>
+          </div>
+          <div className="feedback-section">
+            <h3>Feedback</h3>
+            <div className="feedback-items">
+              {tourGuideDetails.feedback.map((feedback, index) => (
+                <div key={index} className="feedback-item">
+                  <p className="rating">Rating: {feedback.stars} / 5</p>
+                  <p className="comment">{feedback.comment}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bookings-section">
+            <h3>Bookings</h3>
+            {/* Implement bookings display as needed */}
+          </div>
         </div>
-        
-        <InboxComponent messages={messages} />
-        
+      </div>
+      <InboxComponent messages={messages} />
     </div>
-  
   );
 }
 

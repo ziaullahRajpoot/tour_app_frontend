@@ -1,0 +1,19 @@
+/* src/components/tourguideprofile/EditTourGuideProfile.css */
+.edit-tour-guide-profile {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .edit-tour-guide-profile h2 {
+    margin-bottom: 20px;
+  }
+  
+  .edit-tour-guide-profile .form-control {
+    margin-bottom: 15px;
+  }
+  
+  .edit-tour-guide-profile .btn {
+    display: block;
+    width: 100%;
+  }
+  

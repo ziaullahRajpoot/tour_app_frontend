@@ -15,6 +15,9 @@ import ResetPasswordPage from './components/ResetPasswordPage';
 import NavbarComponent from './components/NavbarComponent';
 import HomePage from './components/homepage/HomePage';
 import TourGuideProfile from './components/tourguideprofile/TourGuideProfile'; // Keep this only
+import EditTourGuideProfile from './components/tourguideprofile/EditTourGuideProfile';
+
+
 import MessagingPage from './components/messages/MessagingPage'; // Adjust the import path as needed
 
 import LikedTourGuidesPage from './components/likedTourGuides/LikedTourGuidesPage';
@@ -46,6 +49,8 @@ function App() {
           <Route path="/reset-password" element={<ResetPasswordPage />} /> {/* Updated this line */}
 
           <Route path="/tour-guide/:tourGuideId" element={<TourGuideProfile />} />
+          <Route path="/tour-guide/:tourGuideId/edit" element={<EditTourGuideProfile />} />
+
           <Route path="/inbox" element={<MessagingPage />} /> {/* Messaging page route */}
           {/* If ProfileComponent is different, import and define it */}
 
