@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SignupPage.css';
 import { useNavigate } from 'react-router-dom';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -14,6 +16,7 @@ function SignupPage() {
   const [phone, setPhone] = useState('');
   const [role, setRole] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +41,11 @@ function SignupPage() {
       navigate('/login');
     } catch (error) {
       console.error('Signup error:', error.response.data);
-      setError('Failed to sign up');
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('Failed to sign up');
+      }
     }
   };
 
@@ -91,45 +98,58 @@ function SignupPage() {
   };
 
   return (
-    <div className="auth-container col-md-6 mx-auto">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="firstName" className="form-label">First Name</label>
-          <input type="text" className="form-control" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="lastName" className="form-label">Last Name</label>
-          <input type="text" className="form-control" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-          <input type="tel" className="form-control" id="phoneNumber" value={phone} onChange={(e) => setPhone(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
-          <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="role" className="form-label">Role</label>
-          <select className="form-select" id="role" value={role} onChange={(e) => setRole(e.target.value)} required>
-            <option value="">Select Role</option>
-            <option value="Tourist">Tourist</option>
-            <option value="tourGuide">Tour Guide</option>
-          </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-          <input type="password" className="form-control" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-        </div>
-        {error && <div className="alert alert-danger">{error}</div>}
-        <button type="submit" className="btn btn-primary">Sign Up</button>
-      </form>
+    <div className="auth-container col-sm-12 col-xl-6">
+      <div className="signup-form">
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input type="text" className="form-control" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <input type="text" className="form-control" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <PhoneInput 
+              country={'us'}
+              value={phone}
+              onChange={(value) => setPhone(value)}
+              inputProps={{
+                name: 'phone',
+                required: true,
+                autoFocus: true,
+              }}
+            />
+          </div>
+          <div className="form-group">
+            <input type="email" className="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <select className="form-control" value={role} onChange={(e) => setRole(e.target.value)} required>
+              <option value="">Select Role</option>
+              <option value="Tourist">Tourist</option>
+              <option value="tourGuide">Tour Guide</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <div className="password-input-container">
+              <input type={showPassword ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            </div>
+          </div>
+          <div className="form-group">
+            <input type={showPassword ? "text" : "password"} className="form-control" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+          </div>
+          <div className="form-group check">
+            <input type="checkbox" id="showPassword" checked={showPassword} onChange={() => setShowPassword(!showPassword)} />
+            <label htmlFor="showPassword">Show Password</label>
+          </div>
+          {error && <div className="alert alert-danger">{error}</div>}
+          <button type="submit" className="btn btn-primary">Sign Up</button>
+        </form>
+      </div>
     </div>
+    
+  
+    
   );
 }
 

@@ -1,19 +1,81 @@
-/* src/components/tourguideprofile/EditTourGuideProfile.css */
-.edit-tour-guide-profile {
-    max-width: 600px;
-    margin: auto;
+.edit-tour-guide-page {
+    display: flex;
+    justify-content: center;
+    margin: 10% auto;
   }
   
-  .edit-tour-guide-profile h2 {
-    margin-bottom: 20px;
+  .edit-tour-guide-profile-container {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .edit-tour-guide-profile .form-control {
-    margin-bottom: 15px;
+  .profile-header {
+    display: flex;
+    align-items: center;
   }
   
-  .edit-tour-guide-profile .btn {
+  .profile-picture-container {
+    position: relative;
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .change-profile-picture-btn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff57;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .change-profile-picture-btn i {
+    font-size: 20px;
+    color: white;
+  }
+  
+  .profile-info {
+    margin-left: 20px;
+  }
+  
+  .edit-tour-guide-profile-form .form-control {
+    margin-bottom: 10px;
+  }
+  
+  .edit-tour-guide-profile-form .btn-primary {
+    margin-top: 20px;
+  }
+  
+  .portfolio-section {
+    margin-top: 20px;
+  }
+  
+  .add-portfolio-btn {
     display: block;
+    margin-top: 10px;
+  }
+  
+  .portfolio-item {
+    position: relative;
+  }
+  
+  .portfolio-image,
+  .portfolio-video {
     width: 100%;
+    height: auto;
   }
   

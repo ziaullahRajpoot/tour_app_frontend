@@ -8,6 +8,7 @@ import image2 from '../assets/2.jpg';
 const tourGuides = [
   {
     id: 1,
+    profilePicture: image1,
     name: "John Doe",
     location: "New York",
     languages: ["English", "Spanish"],
