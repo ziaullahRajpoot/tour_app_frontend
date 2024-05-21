@@ -18,7 +18,7 @@ import TourGuideProfile from './components/tourguideprofile/TourGuideProfile'; /
 import EditTourGuideProfile from './components/tourguideprofile/EditTourGuideProfile';
 
 
-import MessagingPage from './components/messages/MessagingPage'; // Adjust the import path as needed
+import MessagingPage from './components/chat/MessagingPage'; // Adjust the import path as needed
 
 import LikedTourGuidesPage from './components/likedTourGuides/LikedTourGuidesPage';
 
@@ -39,7 +39,7 @@ function App() {
   return (
     <Router>
       <NavbarComponent />
-      <div className="container">
+      
       
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -59,7 +59,7 @@ function App() {
 
 
         </Routes>
-      </div>
+     
       <Footer />
     </Router>
   );

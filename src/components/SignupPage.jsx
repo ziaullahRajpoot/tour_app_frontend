@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './SignupPage.css';
+
 import { useNavigate } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -48,6 +49,7 @@ function SignupPage() {
       }
     }
   };
+  
 
   const validateForm = () => {
     let formIsValid = true;
@@ -96,17 +98,19 @@ function SignupPage() {
 
     return formIsValid;
   };
+  
 
   return (
+  <div className='background'>
     <div className="auth-container col-sm-12 col-xl-6">
       <div className="signup-form">
         <h2>Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+            <input type="text" className="form-control" placeholder="First Name *" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
           </div>
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+            <input type="text" className="form-control" placeholder="Last Name *" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
           </div>
           <div className="form-group">
             <PhoneInput 
@@ -121,22 +125,22 @@ function SignupPage() {
             />
           </div>
           <div className="form-group">
-            <input type="email" className="form-control" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="email" className="form-control" placeholder="Email *" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
           <div className="form-group">
             <select className="form-control" value={role} onChange={(e) => setRole(e.target.value)} required>
-              <option value="">Select Role</option>
+              <option value="">Select Role <label className='staric'>*</label></option>
               <option value="Tourist">Tourist</option>
               <option value="tourGuide">Tour Guide</option>
             </select>
           </div>
           <div className="form-group">
             <div className="password-input-container">
-              <input type={showPassword ? "text" : "password"} className="form-control" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              <input type={showPassword ? "text" : "password"} className="form-control" placeholder="Password *" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
           </div>
           <div className="form-group">
-            <input type={showPassword ? "text" : "password"} className="form-control" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+            <input type={showPassword ? "text" : "password"} className="form-control" placeholder="Confirm Password *" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
           </div>
           <div className="form-group check">
             <input type="checkbox" id="showPassword" checked={showPassword} onChange={() => setShowPassword(!showPassword)} />
@@ -148,7 +152,7 @@ function SignupPage() {
       </div>
     </div>
     
-  
+  </div>
     
   );
 }

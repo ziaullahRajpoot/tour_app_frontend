@@ -5,7 +5,7 @@ import './TourGuideProfile.css'; // Ensure you have the CSS
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import InboxComponent from '../messages/InboxComponent';
+import InboxComponent from '../chat/InboxComponent';
 
 function TourGuideProfile() {
   const { tourGuideId } = useParams(); // This will be something like "john-doe"
@@ -58,7 +58,7 @@ function TourGuideProfile() {
   ];
 
   return (
-    <div className="tour-guide-page">
+    <div className="container tour-guide-page">
       <div className="tour-guide-profile-container">{/* This wraps the existing profile content */}
         <div className="tour-guide-profile">
           <div className="profile-header">

@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
-import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as fasHeart, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'; // Import the map marker icon
+
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import tourGuides from '../../data/tourGuides';
+import './HomePage.css'
 
 function HomePage() {
   const [guides, setGuides] = useState(tourGuides); // Assuming tourGuides has the adjusted structure
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('username');
   const [likedGuides, setLikedGuides] = useState([]);
-
 
   useEffect(() => {
     const filteredGuides = tourGuides.filter(guide => {
@@ -30,6 +31,7 @@ function HomePage() {
     slidesToShow: 1,
     slidesToScroll: 1
   };
+
   const handleLike = (id) => {
     if (likedGuides.includes(id)) {
       setLikedGuides(likedGuides.filter((guideId) => guideId !== id));
@@ -39,30 +41,29 @@ function HomePage() {
   };
 
   return (
-    <div>
+    <div className='homepage'>
       <h2>Tour Guides</h2>
-        <div className="row my-3">
-          <div className="col-9 col-md-8">
-            <input
-              type="text"
-              className="form-control"
-              placeholder={`Search by ${searchType}...`}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <div className="col-2">
-            <select
-              className="form-select"
-              value={searchType}
-              onChange={(e) => setSearchType(e.target.value)}
-            >
-              <option value="username">Name</option>
-              <option value="location">Location</option>
-            </select>
-          </div>
+      <div className="row my-3">
+        <div className="col-7 col-md-8">
+          <input
+            type="text"
+            className="form-control"
+            placeholder={`Search by ${searchType}...`}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
-      {/* Search and filter input */}
+        <div className="col-5 col-md-2">
+          <select
+            className="form-select"
+            value={searchType}
+            onChange={(e) => setSearchType(e.target.value)}
+          >
+            <option value="username">Name</option>
+            <option value="location">Location</option>
+          </select>
+        </div>
+      </div>
       <div className="row">
         {guides.map((guide) => (
           <div key={guide.id} className="col-md-4 mb-4">
@@ -75,26 +76,18 @@ function HomePage() {
                     </div>
                   ))}
                 </Slider>
-                {/* Place like button on top right corner */}
                 <button onClick={() => handleLike(guide.id)} className="like-button position-absolute top-0 end-0 m-2 btn btn-light">
                   <FontAwesomeIcon icon={likedGuides.includes(guide.id) ? fasHeart : farHeart} />
                 </button>
               </div>
               <div className="card-body">
-                {/* <h5 className="card-title">
-                  <Link to={`/profile/${guide.name.toLowerCase().replace(/\s+/g, '-')}`}>{guide.name}</Link>
-                </h5> */}
                 <h5 className="card-title">
-                  {/* <Link to={`/tour-guide/${guide.name.toLowerCase().replace(/\s+/g, '-')}`}>{guide.name}</Link> */}
                   <Link to={`/tour-guide/${guide.name.toLowerCase().replace(/\s+/g, '-')}`}>{guide.name}</Link>
-
-
                 </h5>
-
                 <span>I'm {guide.name} and I'm here to assist you on your journey to {guide.location}.</span>
-                {/* <p className="card-text">Languages: {guide.languages.join(', ')}</p> */}
-                <p style={{marginTop: '1rem'}} className="card-text"><b>Location: </b>{guide.location}</p>
-               
+                <p style={{ marginTop: '1rem' }} className="card-text">
+                  <FontAwesomeIcon icon={faMapMarkerAlt} /> {guide.location}
+                </p>
               </div>
             </div>
           </div>

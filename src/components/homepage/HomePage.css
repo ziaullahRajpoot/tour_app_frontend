@@ -1,6 +1,12 @@
 /* src/components/HomePage.css */
 
-.input-group-custom {
+.homepage{
+  display: block;
+  padding-top: 2%;
+  padding-left: 3%;
+  padding-bottom: 2%;
+}
+  .input-group-custom {
     display: flex;
     width: 100%;
   }
@@ -18,7 +24,6 @@
 
   /* HomePage.css */
 .navbar-collapse.collapse {
-    display: flex !important;
     flex-grow: 1;
   }
   
@@ -27,10 +32,11 @@
     justify-content: center;
   }
 
-/* HomePage.css */
-.card {
+
+  .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    padding: 1.5rem;
   }
   
   .card:hover {
@@ -44,7 +50,7 @@
   }
   
   .card-body {
-    padding: 2rem;
+    padding: 1.5rem !important;
   }
   
   .card-title {
@@ -73,9 +79,5 @@
   
   
   /* Example media query to adjust layout on smaller screens */
-  @media (max-width: 992px) {
-    .navbar-nav.mx-auto {
-      flex-grow: 0;
-    }
-  }
+  
   

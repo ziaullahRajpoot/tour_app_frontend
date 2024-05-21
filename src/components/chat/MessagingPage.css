@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+}
+
+.msg-row{
+  width: 100%;
+}
+
+.clients-list,
+.chat-window,
+.client-data {
+  flex: 1;
+  padding: 10px;
+  border-radius: 4px;
+  height: calc(100vh - 20px); /* Calculate height to occupy full screen height with padding */
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+}
+
+.clients-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.clients-list li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.clients-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.chat-window .messages {
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.chat-window .message {
+  margin-bottom: 10px;
+}
+
+.chat-window .message.tour-guide {
+  color: blue;
+}
+
+.chat-window .message.client {
+  color: green;
+}
+
+.chat-window .timestamp {
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+.chat-window .send-message {
+  display: flex;
+}
+
+.chat-window .send-message input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.chat-window .send-message button {
+  padding: 10px 20px;
+  border: none;
+  background-color: blue;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-window .send-message button:hover {
+  background-color: darkblue;
+}
+
+.messaging-page {
+  display: flex;
+}
+
+.clients-list {
+  border-right: 1px solid #ddd;
+}
+
+.client-data {
+  border-left: 1px solid #ddd;
+}
