@@ -131,7 +131,7 @@ function SignupPage() {
             <select className="form-control" value={role} onChange={(e) => setRole(e.target.value)} required>
               <option value="">Select Role <label className='staric'>*</label></option>
               <option value="Tourist">Tourist</option>
-              <option value="tourGuide">Tour Guide</option>
+              <option value="tour-guide">Tour Guide</option>
             </select>
           </div>
           <div className="form-group">
