@@ -75,7 +75,7 @@ function EditTourGuideProfile() {
   };
 
   return (
-    <div className="edit-tour-guide-page">
+    <div className="">
       <div className="edit-tour-guide-profile-container">
         <form onSubmit={handleSubmit} className="edit-tour-guide-profile-form">
           <div className="profile-header">

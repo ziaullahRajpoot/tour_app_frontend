@@ -1,27 +1,53 @@
-import React from 'react';
+// components/TourGuideProfile.jsx
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import tourGuides from '../../data/tourGuides';
-import './TourGuideProfile.css'; // Ensure you have the CSS
+import axios from 'axios';
+import './TourGuideProfile.css';
 import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import InboxComponent from '../chat/InboxComponent';
 
 function TourGuideProfile() {
-  const { tourGuideId } = useParams(); // This will be something like "john-doe"
+  const { tourGuideId } = useParams();
   
-  // Convert the URL parameter back to the original format to match against the guide's name
-  const guideNameFromUrl = tourGuideId.replace(/-/g, ' ');
+  const [tourGuideDetails, setTourGuideDetails] = useState(null);
+  const [error, setError] = useState('');
 
-  const tourGuideDetails = tourGuides.find(guide => 
-    guide.name.toLowerCase() === guideNameFromUrl
-  );
+  useEffect(() => {
+    const fetchTourGuideDetails = async () => {
+      if (!tourGuideId) {
+        setError('Invalid tour guide ID');
+        return;
+      }
 
-  if (!tourGuideDetails) {
-    return <div>Tour guide not found</div>;
+      try {
+        const response = await axios.get(`http://127.0.0.1:3000/tour-guides/${tourGuideId}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const { success, body } = response.data;
+        if (success) {
+          setTourGuideDetails(body);
+        }
+      } catch (error) {
+        console.error('Error fetching tour guide details:', error);
+        setError(error.response?.data?.message || 'An error occurred while fetching data.');
+      }
+    };
+
+    fetchTourGuideDetails();
+  }, [tourGuideId]);
+
+  if (error) {
+    return <div className="alert alert-danger">{error}</div>;
   }
 
-  // Slider settings
+  if (!tourGuideDetails) {
+    return <div>Loading...</div>;
+  }
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -30,14 +56,14 @@ function TourGuideProfile() {
     slidesToScroll: 3,
     responsive: [
       {
-        breakpoint: 1024, // Tablet and below
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
         },
       },
       {
-        breakpoint: 600, // Mobile and below
+        breakpoint: 600,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -46,20 +72,9 @@ function TourGuideProfile() {
     ],
   };
 
-  // Example messages data - this should come from your tourGuideDetails or similar
-  const messages = tourGuideDetails.messages || [
-    { senderName: "Client 1", text: "Hello, I'm interested in your tour." },
-    { senderName: "Client 2", text: "Can you provide more details about the trip?" },
-    { senderName: "Client 1", text: "Hello, I'm interested in your tour." },
-    { senderName: "Client 2", text: "Can you provide more details about the trip?" },
-    { senderName: "Client 1", text: "Hello, I'm interested in your tour." },
-    { senderName: "Client 2", text: "Can you provide more details about the trip?" },
-    // Add more messages as examples...
-  ];
-
   return (
     <div className="container tour-guide-page">
-      <div className="tour-guide-profile-container">{/* This wraps the existing profile content */}
+      <div className="tour-guide-profile-container">
         <div className="tour-guide-profile">
           <div className="profile-header">
             <img src={tourGuideDetails.profilePicture} alt={tourGuideDetails.name} className="profile-picture"/>
@@ -100,11 +115,10 @@ function TourGuideProfile() {
           </div>
           <div className="bookings-section">
             <h3>Bookings</h3>
-            {/* Implement bookings display as needed */}
           </div>
         </div>
       </div>
-      <InboxComponent messages={messages} />
+      <InboxComponent messages={tourGuideDetails.messages || []} />
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import "./App.css"
 
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -23,6 +24,7 @@ import MessagingPage from './components/chat/MessagingPage'; // Adjust the impor
 import LikedTourGuidesPage from './components/likedTourGuides/LikedTourGuidesPage';
 
 import Footer from './components/Footer';
+import CanvasAnimation from './components/CanvasAnimation'; 
 
 function App() {
   const [likedGuides, setLikedGuides] = useState([]);
@@ -38,17 +40,20 @@ function App() {
   };
   return (
     <Router>
+      <CanvasAnimation />
       <NavbarComponent />
       
       
         <Routes>
+          
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} /> {/* Updated this line */}
 
-          <Route path="/tour-guide/:tourGuideId" element={<TourGuideProfile />} />
+          <Route path="/tour-guide/:tourGuideId" component={TourGuideProfile} />
+
           <Route path="/tour-guide/:tourGuideId/edit" element={<EditTourGuideProfile />} />
 
           <Route path="/inbox" element={<MessagingPage />} /> {/* Messaging page route */}

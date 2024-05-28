@@ -12,8 +12,8 @@
   flex: 1;
   padding: 10px;
   border-radius: 4px;
-  height: calc(100vh - 20px); /* Calculate height to occupy full screen height with padding */
-  overflow-y: auto; /* Allow scrolling if content exceeds height */
+  height: calc(100vh - 10vh); /* Calculate height to occupy full screen height with padding */
+  
 }
 
 .clients-list ul {
@@ -34,10 +34,12 @@
   overflow-y: auto; /* Allow scrolling if content exceeds height */
   padding: 10px;
   margin-bottom: 10px;
+  height: 85%;
 }
 
 .chat-window .message {
   margin-bottom: 10px;
+  overflow-y: auto; /* Allow scrolling if content exceeds height */
 }
 
 .chat-window .message.tour-guide {

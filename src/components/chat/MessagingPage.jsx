@@ -41,6 +41,12 @@ const MessagingPage = () => {
           <ClientsList clients={clientsData} onSelectClient={setSelectedClientId} />
         </div>
         <div className="col-8 chat-window">
+          <div>
+
+          </div>
+          <div>
+            
+          </div>
           {selectedClient ? <ChatWindow client={selectedClient} /> : <p>Select a client to start chatting.</p>}
         </div>
         <div className="col-2 client-data">
