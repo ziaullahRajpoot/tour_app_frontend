@@ -11,6 +11,7 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +40,9 @@ function LoginPage() {
         setError('An error occurred. Please try again.');
       }
     }
+  };
+  const handlePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -76,7 +80,7 @@ function LoginPage() {
         <div className="mb-3">
           <label htmlFor="password" className="form-label visually-hidden">Password</label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             className="form-control"
             id="password"
             name="password"
@@ -86,9 +90,25 @@ function LoginPage() {
             required
           />
         </div>
+        <div className="form-check mb-3">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="showPassword"
+            checked={showPassword}
+            onChange={handlePasswordVisibility}
+          />
+          <label className="form-check-label" htmlFor="showPassword">
+            Show Password
+          </label>
+        </div>
         {error && <div className="alert alert-danger">{error}</div>}
         <button type="submit" className="btn btn-primary">Login</button>
         <div className="text-center mt-3">
+          
+          <p>
+            Don't have an account? <Link to="/signup">Back to Signup Page</Link> {/* Link to the signup page */}
+          </p>
           <p>
             Forgot your password? <Link to="/forgot-password">Reset it here</Link> {/* Link to the forgot password page */}
           </p>

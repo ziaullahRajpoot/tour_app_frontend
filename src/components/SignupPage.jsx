@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './SignupPage.css';
 
@@ -101,7 +102,7 @@ function SignupPage() {
   
 
   return (
-  <div className='background'>
+  
     <div className="auth-container col-sm-12 col-xl-6">
       <div className="signup-form">
         <h2>Sign Up</h2>
@@ -130,7 +131,7 @@ function SignupPage() {
           <div className="form-group">
             <select className="form-control" value={role} onChange={(e) => setRole(e.target.value)} required>
               <option value="">Select Role <label className='staric'>*</label></option>
-              <option value="Tourist">Tourist</option>
+              <option value="tourist">Tourist</option>
               <option value="tour-guide">Tour Guide</option>
             </select>
           </div>
@@ -143,8 +144,18 @@ function SignupPage() {
             <input type={showPassword ? "text" : "password"} className="form-control" placeholder="Confirm Password *" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
           </div>
           <div className="form-group check">
-            <input type="checkbox" id="showPassword" checked={showPassword} onChange={() => setShowPassword(!showPassword)} />
+            <input
+              type="checkbox"
+              id="showPassword"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+            />
             <label htmlFor="showPassword">Show Password</label>
+            
+            <span style={{ marginLeft: '10px' }}>
+             
+              <Link to="/login"> Log in here</Link>
+            </span>
           </div>
           {error && <div className="alert alert-danger">{error}</div>}
           <button type="submit" className="btn btn-primary">Sign Up</button>
@@ -152,7 +163,7 @@ function SignupPage() {
       </div>
     </div>
     
-  </div>
+  
     
   );
 }

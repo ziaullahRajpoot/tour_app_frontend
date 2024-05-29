@@ -74,6 +74,66 @@
     right: 0;
     z-index: 2; /* Ensure the button is above the slider images */
   }
+  .homepage {
+    padding: 20px;
+  }
+  
+  .card-img-top-container {
+    position: relative;
+  }
+  
+  .like-button {
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    color: #ff0000;
+  }
+  
+  .slick-slide img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card {
+    border: none;
+    overflow: hidden;
+  }
+  
+  .card-title a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .card-title a:hover {
+    text-decoration: underline;
+  }
+  
+  .card-body {
+    text-align: center;
+  }
+ 
+  
+/* Add these styles to your HomePage.css file */
+.card-img-top-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-top-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensure the image covers the container */
+}
+
+@media (min-width: 768px) {
+  .card-img-top-container {
+    height: 300px; /* Set a fixed height for the container on desktop */
+  }
+  .homepage {
+    padding: 5rem;
+  }
+}
+
   
   /* Add more styles as needed */
   

@@ -10,12 +10,10 @@
   border-radius: 8px;
   float: right;
   margin-right: 15%;
+  z-index: 1;
 }
 
-.background {
-  background-image: url('../assets/image10-2-1024x595.webp');
-  background-size: cover;
-}
+
 
 h2 {
   text-align: center;
