@@ -1,4 +1,3 @@
-// components/TourGuideProfile.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -15,6 +14,7 @@ function TourGuideProfile() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    console.log('Tour Guide ID:', tourGuideId);  // Log the tourGuideId for debugging
     const fetchTourGuideDetails = async () => {
       if (!tourGuideId) {
         setError('Invalid tour guide ID');
@@ -22,7 +22,7 @@ function TourGuideProfile() {
       }
 
       try {
-        const response = await axios.get(`http://127.0.0.1:3000/tour-guides/${tourGuideId}`, {
+        const response = await axios.get(`http://127.0.0.1:3000/tour-guide/${tourGuideId}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
@@ -30,6 +30,8 @@ function TourGuideProfile() {
         const { success, body } = response.data;
         if (success) {
           setTourGuideDetails(body);
+        } else {
+          setError('Tour guide not found');
         }
       } catch (error) {
         console.error('Error fetching tour guide details:', error);
