@@ -43,6 +43,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/tour-guide/:tourGuideId" element={<TourGuideProfile />} />
         <Route path="/tour-guide/:tourGuideId/edit" element={<EditTourGuideProfile />} />
+        <Route path="/tour-guide" element={<EditTourGuideProfile />} />
         <Route path="/inbox" element={<MessagingPage />} />
         <Route path="/liked-tourguides" element={<LikedTourGuidesPage likedGuides={likedGuides} />} />
       </Routes>

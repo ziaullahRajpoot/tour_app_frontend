@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faBell, faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
 import { OverlayTrigger, Popover, Button, Tooltip } from 'react-bootstrap'; // Corrected import statement
-import './NavbarComponent.css';
+import '../style/NavbarComponent.css';
 
 
 

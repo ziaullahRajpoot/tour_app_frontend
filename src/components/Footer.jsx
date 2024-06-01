@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; // Import useState and useEffect
 import { Link } from 'react-router-dom';
-import "./Footer.css"
+import "../style/Footer.css"
 
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);

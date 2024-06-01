@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './SignupPage.css';
+import '../style/SignupPage.css';
 
 import { useNavigate } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+// import { SERVER_URL } from '../constants';
+
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ function SignupPage() {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:3000/auth/signup', {
+      const response = await axios.post(`${SERVER_URL}/auth/signup`, {
         email,
         password,
         firstName,

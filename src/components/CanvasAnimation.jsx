@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './BackgroundEffect.css'; // Ensure this file contains the required styles
 
 const CanvasAnimation = () => {
   useEffect(() => {

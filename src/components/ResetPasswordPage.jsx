@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ResetPasswordPage.css';
+import "../style/ResetPasswordPage.css"
 
 const ResetPasswordPage = () => {
   const [password, setPassword] = useState('');

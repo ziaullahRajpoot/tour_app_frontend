@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import "../index.css";
-import "./LoginPage.css";
+import "../style/LoginPage.css";
+import {SERVER_URL} from '../constants';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://127.0.0.1:3000/auth/login', {
+      const response = await axios.post(`${SERVER_URL}/auth/login`, {
         email,
         password,
         role,

@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './HomePage.css';
 import sampleImage from '../../assets/sampleImage.jpeg'; // Ensure this image is in the correct path
+import { SERVER_URL } from '../../constants/';
 
 const HomePage = () => {
   const [guides, setGuides] = useState([]);
@@ -20,12 +21,16 @@ const HomePage = () => {
 
   const fetchGuides = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:3000/tour-guides', {
+      const response = await axios.get(`${SERVER_URL}/tour-guides`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
         }
       });
+
       const { success, body } = response.data;
+
       if (success) {
         setGuides(body);
         setFilteredGuides(body);
@@ -52,6 +57,7 @@ const HomePage = () => {
         : terms.some(term => location.includes(term)); // Check if any term matches location
     });
     setFilteredGuides(filtered);
+    
   }, [searchTerm, searchType, guides]);
   
 
