@@ -127,7 +127,7 @@ function TourGuideProfile() {
               <h2>{firstName} {lastName}</h2>
              
               <p className="bio">{bio}</p>
-              <Link to={`/tour-guide/${tourGuideId}/edit`} className="btn btn-primary">Edit Profile</Link>
+              <Link to={`/tour-guide/${tourGuideId}/edit`} className="btn btn-primary" state={{ data: tourGuideDetails }}>Edit Profile</Link>
             </div>
           </div>
 

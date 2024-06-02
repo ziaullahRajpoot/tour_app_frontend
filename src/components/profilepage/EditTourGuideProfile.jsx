@@ -1,236 +1,25 @@
-// import React, { useState } from 'react';
-// import { useParams, useNavigate } from 'react-router-dom';
-// import tourGuides from '../../data/tourGuides';
-// import './EditTourGuideProfile.css'; // Ensure you have the CSS
-// import Slider from 'react-slick';
-// import "slick-carousel/slick/slick.css"; 
-// import "slick-carousel/slick/slick-theme.css";
-
-// function EditTourGuideProfile() {
-//   const { tourGuideId } = useParams();
-//   const navigate = useNavigate();
-  
-//   const guideNameFromUrl = tourGuideId.replace(/-/g, ' ');
-
-//   const tourGuideDetails = tourGuides.find(guide => 
-//     guide.name.toLowerCase() === guideNameFromUrl
-//   );
-
-//   if (!tourGuideDetails) {
-//     return <div>Tour guide not found</div>;
-//   }
-
-//   const [formData, setFormData] = useState({
-//     name: tourGuideDetails.name,
-//     bio: tourGuideDetails.bio,
-//     description: tourGuideDetails.description,
-//     profilePicture: tourGuideDetails.profilePicture,
-//     portfolio: tourGuideDetails.portfolio.map((item, index) => ({ ...item, id: index })),
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData(prevState => ({
-//       ...prevState,
-//       [name]: value
-//     }));
-//   };
-
-//   const handleProfilePictureChange = (e) => {
-//     const file = e.target.files[0];
-//     const reader = new FileReader();
-//     reader.onloadend = () => {
-//       setFormData(prevState => ({
-//         ...prevState,
-//         profilePicture: reader.result
-//       }));
-//     };
-//     reader.readAsDataURL(file);
-//   };
-
-//   const handlePortfolioChange = (e) => {
-//     const files = Array.from(e.target.files);
-//     const newPortfolio = files.map((file, index) => {
-//       return { type: 'image', url: URL.createObjectURL(file), id: formData.portfolio.length + index };
-//     });
-//     setFormData(prevState => ({
-//       ...prevState,
-//       portfolio: [...prevState.portfolio, ...newPortfolio]
-//     }));
-//   };
-
-//   const removePortfolioItem = (id) => {
-//     setFormData(prevFormData => ({
-//       ...prevFormData,
-//       portfolio: prevFormData.portfolio.filter(item => item.id !== id),
-//     }));
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // Save the formData to the backend
-//     // navigate back to the profile page after saving
-//     console.log(formData);
-//     navigate(`/tour-guide/${tourGuideId}`);
-//   };
-
-//   return (
-//     <div className="">
-//       <div className="edit-tour-guide-profile-container">
-//         <form onSubmit={handleSubmit} className="edit-tour-guide-profile-form">
-//           <div className="profile-header">
-//             <div className="profile-picture-container">
-//               <img src={formData.profilePicture} alt={formData.name} className="profile-picture"/>
-//               <label className="change-profile-picture-btn">
-//                 <i className="fas fa-edit"></i>
-//                 <input 
-//                   type="file" 
-//                   accept="image/*" 
-//                   onChange={handleProfilePictureChange} 
-//                   style={{ display: 'none' }}
-//                 />
-//               </label>
-//             </div>
-//             <div className="profile-info">
-//               <h2>
-//                 <input 
-//                   type="text" 
-//                   name="name" 
-//                   value={formData.name} 
-//                   onChange={handleChange} 
-//                   className="form-control" 
-//                 />
-//               </h2>
-//               <p className="bio">
-//                 <textarea 
-//                   name="bio" 
-//                   value={formData.bio} 
-//                   onChange={handleChange} 
-//                   className="form-control"
-//                 />
-//               </p>
-//             </div>
-//           </div>
-//           <div className="description-section">
-//             <h3>Description</h3>
-//             <textarea 
-//               name="description" 
-//               value={formData.description} 
-//               onChange={handleChange} 
-//               className="form-control"
-//             />
-//           </div>
-//           <div className="portfolio-section">
-//             <h3>Portfolio</h3>
-//             <div className="portfolio-wrapper">
-//               {formData.portfolio.map((item) => (
-//                 <div key={item.id} className="portfolio-item">
-//                   {item.type === 'image' ? (
-//                     <img src={item.url} alt={`Portfolio item ${item.id}`} className="portfolio-image" />
-//                   ) : (
-//                     <video src={item.url} controls className="portfolio-video" />
-//                   )}
-//                   <button onClick={() => removePortfolioItem(item.id)}>Remove</button>
-//                 </div>
-//               ))}
-//             </div>
-//             <label className="btn btn-primary add-portfolio-btn">
-//               <i className="fas fa-upload"></i> Add Portfolio Items
-//               <input 
-//                 type="file" 
-//                 accept="image/*,video/*" 
-//                 multiple 
-//                 onChange={handlePortfolioChange} 
-//                 style={{ display: 'none' }}
-//               />
-//             </label>
-//           </div>
-//           <div className="feedback-section">
-//             <h3>Feedback</h3>
-//             <div className="feedback-items">
-//               {tourGuideDetails.feedback.map((feedback, index) => (
-//                 <div key={index} className="feedback-item">
-//                   <p className="rating">Rating: {feedback.stars} / 5</p>
-//                   <p className="comment">{feedback.comment}</p>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//           <div className="bookings-section">
-//             <h3>Bookings</h3>
-//             {/* Implement bookings display as needed */}
-//           </div>
-//           <button type="submit" className="btn btn-primary">Save Changes</button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default EditTourGuideProfile;
 import React, { useState } from 'react';
 import './EditTourGuideProfile.css';
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useLocation } from 'react-router-dom';
+import { findIconDefinition } from '@fortawesome/fontawesome-svg-core';
+import axios from 'axios';
+import { SERVER_URL } from '../../constants';
 
 function EditTourGuideProfile() {
-  // Sample static data
-  const sampleTourGuides = [
-    {
-      name: 'John Doe',
-      bio: 'Experienced tour guide with a passion for history and culture.',
-      description: 'I have been guiding tours for over 10 years and love sharing my knowledge with others.',
-      profilePicture: 'https://via.placeholder.com/150',
-      portfolio: [
-        { type: 'image', url: 'https://via.placeholder.com/300/0000FF/808080' },
-        { type: 'image', url: 'https://via.placeholder.com/300/FF0000/FFFFFF' },
-        { type: 'image', url: 'https://via.placeholder.com/300/00FF00/000000' },
-        { type: 'image', url: 'https://via.placeholder.com/300/FF00FF/FFFF00' },
-        { type: 'image', url: 'https://via.placeholder.com/300/00FFFF/FF00FF' },
-        { type: 'image', url: 'https://via.placeholder.com/300/FFFF00/00FFFF' },
-        { type: 'image', url: 'https://via.placeholder.com/300/FFFFFF/FF0000' },
-        { type: 'image', url: 'https://via.placeholder.com/300/000000/00FF00' },
-        { type: 'image', url: 'https://via.placeholder.com/300/0000FF/FFFF00' },
-        { type: 'video', url: 'https://www.w3schools.com/html/mov_bbb.mp4' },
-      ],
-      feedback: [
-        { stars: 5, comment: 'Great tour!' },
-        { stars: 4, comment: 'Very informative.' },
-        { stars: 3, comment: 'Good, but could be better.' },
-        { stars: 5, comment: 'Amazing experience!' },
-        { stars: 2, comment: 'Not what I expected.' },
-        { stars: 4, comment: 'Really good guide.' },
-        { stars: 5, comment: 'Best tour ever!' },
-        { stars: 3, comment: 'It was okay.' },
-        { stars: 4, comment: 'Pretty good tour.' },
-        { stars: 5, comment: 'Loved it!' },
-      ],
-      bookings: [
-        { date: '2024-06-01', client: 'Alice Johnson' },
-        { date: '2024-06-02', client: 'Bob Smith' },
-        { date: '2024-06-03', client: 'Carol White' },
-        { date: '2024-06-04', client: 'Dave Brown' },
-        { date: '2024-06-05', client: 'Eve Davis' },
-        { date: '2024-06-06', client: 'Frank Harris' },
-        { date: '2024-06-07', client: 'Grace Lee' },
-        { date: '2024-06-08', client: 'Hank Miller' },
-        { date: '2024-06-09', client: 'Ivy Wilson' },
-        { date: '2024-06-10', client: 'Jack Taylor' },
-      ],
-    },
-    // Additional tour guides if needed
-  ];
+  const location = useLocation();
+  const tourGuide = location.state.data;
 
-  // Using the first tour guide as default
-  const tourGuideDetails = sampleTourGuides[0];
+  const [profile, setProfile] = useState(tourGuide.profile);
+  const [name, setName] = useState(`${tourGuide.firstName} ${tourGuide.lastName}`);
+  const [description, setDescription] = useState(tourGuide.description);
+  const [bio, setBio] = useState(tourGuide.bio);
+  const [portfolio, setPortfolio] = useState(tourGuide.portfolio ?? []);
 
-  const [formData, setFormData] = useState({
-    name: tourGuideDetails.name,
-    bio: tourGuideDetails.bio,
-    description: tourGuideDetails.description,
-    profilePicture: tourGuideDetails.profilePicture,
-    portfolio: tourGuideDetails.portfolio.map((item, index) => ({ ...item, id: index })),
-  });
+  const [newPortfolio, setNewPortfolio] = useState([]);
+
+  const [formData, setFormData] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -240,42 +29,117 @@ function EditTourGuideProfile() {
     }));
   };
 
-  const handleProfilePictureChange = (e) => {
+  const handleProfilePictureChange = async (e) => {
     const file = e.target.files[0];
+
+    if (!file) return;
+
+    console.log('File', file);
+
     const reader = new FileReader();
+
     reader.onloadend = () => {
-      setFormData(prevState => ({
-        ...prevState,
-        profilePicture: reader.result
-      }));
+
+      console.log('PATTTTTH', reader.result);
+
+      return setProfile(reader.result);
     };
+
     reader.readAsDataURL(file);
   };
 
   const handlePortfolioChange = (e) => {
     const files = Array.from(e.target.files);
-    const newPortfolio = files.map((file, index) => {
-      return { type: 'image', url: URL.createObjectURL(file), id: formData.portfolio.length + index };
-    });
-    setFormData(prevState => ({
-      ...prevState,
-      portfolio: [...prevState.portfolio, ...newPortfolio]
-    }));
+
+    if (files.length === 0) return;
+
+    // const imageFiles = files.filter(file => file.type.startsWith('image'));
+
+    // const imageFileURLs = imageFiles.map(file => URL.createObjectURL(file));
+
+    setNewPortfolio(files);
   };
 
-  const removePortfolioItem = (id) => {
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      portfolio: prevFormData.portfolio.filter(item => item.id !== id),
-    }));
+  const removePortfolioItem = (img) => {
+    setPortfolio(portfolio.filter((e) => e != img));
   };
-  
+
   const calculateAverageRating = () => {
     // Calculate average rating overall
-    const totalStars = tourGuideDetails.feedback.reduce((acc, feedback) => acc + feedback.stars, 0);
-    const averageRating = totalStars / tourGuideDetails.feedback.length;
-    return isNaN(averageRating) ? 0 : averageRating.toFixed(1);
+    // const totalStars = tourGuideDetails.feedback.reduce((acc, feedback) => acc + feedback.stars, 0);
+    // const averageRating = totalStars / tourGuideDetails.feedback.length;
+    // return isNaN(averageRating) ? 0 : averageRating.toFixed(1);
+
+    return 0;
   };
+
+  const updateProfile = async (e) => {
+    e.preventDefault();
+
+    if (profile !== tourGuide.profile) {
+      setProfile(await uploadFile(profile, '/profiles'));
+    }
+
+    if (newPortfolio.length !== 0) {
+      setNewPortfolio(newPortfolio.map(async (e) => await uploadFile(e, '/portfolios')));
+    }
+
+    const firstName = name.split(' ')[0];
+    const lastName = name.split(' ')[1];
+
+    const body = {
+      description,
+      bio,
+      portfolio: [...portfolio, newPortfolio],
+      firstName, lastName,
+    }
+
+    const response = await axios.patch(`${SERVER_URL}/tour-guides/profile`, body, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+
+
+    const { status, data } = response.data;
+
+    console.log('Status', status, 'Data', data);
+
+  }
+
+  const uploadFile = async (path, directory) => {
+
+    console.log('Path', path, 'Dire', directory);
+
+    try {
+      const formData = new FormData();
+
+      // Fetch the file from the given path
+      const response = await fetch(path);
+      const blob = await response.blob();
+      const file = new File([blob], path.split('/').pop(), { type: blob.type });
+
+      // Append the file and directory to FormData
+      formData.append('files', file);
+      formData.append('path', directory);
+
+      // Send the POST request with Axios
+      const result = await axios.post(`${SERVER_URL}/upload`, formData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      console.log('Response', response.data);
+
+      return result.data;
+
+    } catch (e) {
+
+      throw new Error('could not upload file', e.result.data)
+    }
+  }
 
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
@@ -286,9 +150,11 @@ function EditTourGuideProfile() {
     for (let i = 0; i < fullStars; i++) {
       stars.push(<span key={i} className="star">★</span>);
     }
+
     if (halfStar) {
       stars.push(<span key={fullStars} className="star">½</span>);
     }
+
     for (let i = 0; i < emptyStars; i++) {
       stars.push(<span key={fullStars + i + 1} className="star inactive">☆</span>);
     }
@@ -296,38 +162,38 @@ function EditTourGuideProfile() {
     return stars;
   };
 
+
   return (
     <div className="edit-tour-guide-profile-container col-12">
       <div className="edit-profile-section col-12 col-md-8">
         <form className="edit-tour-guide-profile-form">
           <div className="profile-header">
             <div className="profile-picture-container">
-              <img src={formData.profilePicture} alt={formData.name} className="profile-picture"/>
+              <img src={profile ?? 'https://via.placeholder.com/150'} className="profile-picture" />
               <label className="change-profile-picture-btn">
                 <i className="fas fa-edit"></i>
-                <input 
-                  type="file" 
-                  accept="image/*" 
-                  onChange={handleProfilePictureChange} 
+                <input
+                  type="file"
+                  onChange={handleProfilePictureChange}
                   style={{ display: 'none' }}
                 />
               </label>
             </div>
             <div className="profile-info">
               <h2>
-                <input 
-                  type="text" 
-                  name="name" 
-                  value={formData.name} 
-                  onChange={handleChange} 
-                  className="form-control" 
+                <input
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="form-control"
                 />
               </h2>
               <p className="bio">
-                <textarea 
-                  name="bio" 
-                  value={formData.bio} 
-                  onChange={handleChange} 
+                <textarea
+                  name="bio"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
                   className="form-control"
                 />
               </p>
@@ -335,24 +201,20 @@ function EditTourGuideProfile() {
           </div>
           <div className="description-section">
             <h3>Description</h3>
-            <textarea 
-              name="description" 
-              value={formData.description} 
-              onChange={handleChange} 
+            <textarea
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               className="form-control"
             />
           </div>
           <div className="portfolio-section">
             <h3>Portfolio</h3>
             <div className="portfolio-wrapper">
-              {formData.portfolio.map((item) => (
-                <div key={item.id} className="portfolio-item">
-                  {item.type === 'image' ? (
-                    <img src={item.url} alt={`Portfolio item ${item.id}`} className="portfolio-image" />
-                  ) : (
-                    <video src={item.url} controls className="portfolio-video" />
-                  )}
-                  <button onClick={() => removePortfolioItem(item.id)}>
+              {[...portfolio, ...newPortfolio].map((item, index) => (
+                <div key={`${item.id}-${index}`} className="portfolio-item">
+                  <img src={item} alt={`Portfolio item ${item}`} className="portfolio-image" />
+                  <button onClick={() => removePortfolioItem(item)}>
                     <i className="fas fa-times"></i>
                   </button>
                 </div>
@@ -360,27 +222,27 @@ function EditTourGuideProfile() {
             </div>
             <label className="btn btn-primary add-portfolio-btn">
               <i className="fas fa-upload"></i> Add Portfolio Items
-              <input 
-                type="file" 
-                accept="image/*,video/*" 
-                multiple 
-                onChange={handlePortfolioChange} 
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handlePortfolioChange}
                 style={{ display: 'none' }}
               />
             </label>
           </div>
           <div className="feedback-section">
-            <h3>Feedback ({tourGuideDetails.feedback.length})</h3>
+            <h3>Feedback ({tourGuide?.feedback?.length ?? 0})</h3>
             <div className="average-rating">
               Average Rating: {renderStars(calculateAverageRating())}
             </div>
             <div className="feedback-container">
               <div className="feedback-items">
-                {tourGuideDetails.feedback.map((feedback, index) => (
+                {tourGuide?.feedback?.map((feedback, index) => (
                   <div key={index} className="feedback-item">
                     <div className="user-info">
-                      <img src={tourGuideDetails.profilePicture} alt={tourGuideDetails.name} className="profile-img" />
-                      <p className="user-name">{tourGuideDetails.name}</p>
+                      <img src={tourGuide.profilePicture} alt={tourGuide.name} className="profile-img" />
+                      <p className="user-name">{tourGuide.name}</p>
                     </div>
                     <div className="rating">
                       {Array(feedback.stars).fill().map((_, i) => (
@@ -392,19 +254,19 @@ function EditTourGuideProfile() {
                     </div>
                     <p className="comment">{feedback.comment}</p>
                   </div>
-                ))}
+                )) ?? []}
               </div>
             </div>
           </div>
-
-
+          <button onClick={updateProfile}>Update Profile</button>
         </form>
       </div>
-     
+
+
       <div className="bookings-section col-12 col-md-4">
         <h3 className="section-title">Upcoming Bookings</h3>
         <div className="bookings-list">
-          {tourGuideDetails.bookings.map((booking, index) => (
+          {tourGuide?.bookings?.map((booking, index) => (
             <div key={index} className="booking-item">
               <div className="booking-info">
                 <p className="booking-date">{booking.date}</p>
@@ -414,11 +276,11 @@ function EditTourGuideProfile() {
                 <button className="btn btn-cancel">Cancel</button>
               </div>
             </div>
-          ))}
+          )) ?? []}
         </div>
       </div>
     </div>
-    
+
   );
 }
 
