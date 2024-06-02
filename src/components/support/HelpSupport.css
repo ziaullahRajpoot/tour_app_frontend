@@ -1,0 +1,101 @@
+/* HelpSupport.css */
+.container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  h2, h3 {
+    margin-top: 20px;
+  }
+  
+  p {
+    margin-bottom: 20px;
+  }
+  .help-support-container {
+    padding: 20px;
+    
+    margin: 0 auto;
+    z-index: 1;
+    background-color: white;
+    width: 100%;
+  }
+  
+  .faq-section h3 {
+    margin-top: 20px;
+  }
+
+  
+  .help-support-container h1,
+  .help-support-container h2 {
+    color: #333;
+  }
+  
+  .help-support-container p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .help-support-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .help-support-container ul li {
+    margin: 5px 0;
+  }
+  
+  .help-support-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .help-support-container a:hover {
+    text-decoration: underline;
+  }
+  .help-support{
+    
+    margin: auto;
+  }
+  .faq-item {
+    margin-bottom: 20px;
+  }
+  
+  .support-form {
+    display: flex;
+    flex-direction: column;
+    
+    
+  }
+  
+  .support-form label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .support-form input,
+  .support-form textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background: white;
+    color: #666666;
+  }
+  
+  .support-form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .support-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  

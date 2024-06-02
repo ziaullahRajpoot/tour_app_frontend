@@ -1,0 +1,29 @@
+.contact-us-page {
+    padding: 20px;
+    background-color: white;
+    z-index: 1;
+  }
+  
+  .contact-form {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-info h5 {
+    font-size: 1.25rem;
+    margin-top: 20px;
+  }
+  
+  .contact-info p {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  .icon{
+   text-align: center;
+    color: #7b7878;
+    background: #bbbaba3d;
+    padding: 1.5rem;
+}

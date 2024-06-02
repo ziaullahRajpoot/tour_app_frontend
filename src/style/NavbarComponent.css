@@ -45,3 +45,6 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+nav-link:hover{
+  background-color: transparent !important;
+}

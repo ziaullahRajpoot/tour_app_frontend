@@ -1,0 +1,50 @@
+.destination-page {
+  text-align: center;
+}
+.container {
+  max-width: 100% !important;
+}
+
+.destination-carousel .carousel-item img {
+  height: 70vh;
+  object-fit: cover;
+}
+
+.destination-carousel .carousel-caption {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+.card-body{
+  padding: 0px;
+}
+.carousel-caption h3{
+  color: #f7f6f6 !important;
+}
+@media (max-width: 767px) {
+  .destination-carousel .carousel-item img {
+    height: 50vh;
+  }
+}
+
+.destination-card {
+  transition: transform 0.5s;
+}
+
+.destination-card:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 767px) {
+  .destination-card img {
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: 768px) {
+  .destination-card img {
+    height: 300px;
+    object-fit: cover;
+  }
+}

@@ -1,0 +1,304 @@
+.edit-tour-guide-profile-container {
+  display: flex;
+}
+
+.edit-profile-section {
+  padding: 2rem;
+  background: #f0efef;
+  float: left;
+}
+
+.bookings-section {
+  flex: 0 0 30%; /* 30% width */
+  padding: 20px;
+  float: left;
+}
+.edit-tour-guide-profile-container {
+  padding: 20px;
+  /* max-width: 100%; */
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: block;
+}
+
+.bookings-section {
+  margin-bottom: 20px;
+ 
+  
+}
+.bookings-list{
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: scroll; /* Always show scrollbar */
+}
+.bookings-list {
+  padding-right: 10px; /* Add padding to accommodate scrollbar width */
+}
+
+/* Styling for the scrollbar */
+.bookings-list::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.bookings-list::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+.bookings-list::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+}
+
+
+.section-title {
+  margin-bottom: 10px;
+}
+
+.booking-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+
+}
+
+.booking-info {
+  flex-grow: 1;
+}
+
+.booking-date {
+  font-weight: bold;
+}
+
+.booking-actions {
+  margin-left: 10px;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-cancel {
+  background-color: #ff6666;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #cc0000;
+}
+
+
+.edit-tour-guide-profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture-container {
+  margin-right: 20px;
+  position: relative;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.change-profile-picture-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.profile-info h2 input {
+  font-size: 24px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+}
+
+.bio {
+  font-size: 16px;
+  color: #666;
+}
+
+.bio textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.description-section, .portfolio-section, .feedback-section {
+  margin-bottom: 20px;
+}
+
+.description-section textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.portfolio-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.portfolio-item {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.portfolio-image, .portfolio-video {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.portfolio-item button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #6c6c6c;
+  /* border: none; */
+  color: white;
+  font-size: x-small;
+  border-radius: 50%;
+  width: 0px;
+  /* height: 28px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-portfolio-btn {
+  display: inline-block;
+  margin-top: 10px;
+}
+.feedback-section {
+  margin-top: 20px;
+}
+
+/* EditTourGuideProfile.css */
+
+.feedback-container {
+  max-height: 500px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
+/* Styling for the scrollbar */
+.feedback-container::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.feedback-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+}
+
+.feedback-container::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+}
+
+/* Rest of your CSS styles */
+
+
+.average-rating {
+  margin-bottom: 10px;
+}
+
+.feedback-items {
+  padding-right: 20px; /* Add padding to accommodate scrollbar width */
+}
+
+.feedback-item {
+  margin-bottom: 10px;
+}
+
+.rating {
+  margin-bottom: 5px;
+}
+
+.comment {
+  margin-top: 5px;
+}
+
+.star {
+  color: gold;
+}
+
+.inactive {
+  color: grey;
+}
+
+
+.comment {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input[type="text"], textarea {
+  display: block;
+  width: calc(100% - 16px);
+  padding: 8px;
+  font-size: 16px;
+}
+/* EditTourGuideProfile.css */
+
+.profile-img {
+  width: 30px; /* Adjust the width as needed */
+  height: 30px; /* Adjust the height as needed */
+  border-radius: 50%; /* Make it a circle */
+  margin-right: 10px; /* Add some spacing between the image and user name */
+}
+.user-info{
+  display: inline-flex;
+}
+

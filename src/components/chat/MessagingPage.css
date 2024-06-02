@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  
 }
 
 .msg-row{
@@ -82,7 +83,10 @@
 
 .messaging-page {
   display: flex;
+  z-index: 1;
+  background: white;
 }
+
 
 .clients-list {
   border-right: 1px solid #ddd;

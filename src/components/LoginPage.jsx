@@ -3,9 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import "../index.css";
 import "../style/LoginPage.css";
-import {SERVER_URL} from '../constants';
+import { SERVER_URL } from '../constants';
 
-function LoginPage() {
+function LoginPage({ setIsLoggedIn }) { // Accept the prop to update the login state
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -24,16 +24,22 @@ function LoginPage() {
         role,
       });
 
-      // Assuming the backend returns a token upon successful login
-      const token = response.data.body.token;
+      const { status, body } = response.data;
+      if (status) {
 
-      // Save the token to localStorage or a state management solution like Redux
-      localStorage.setItem('token', token);
+        console.log('Hrllll');
 
-      // Redirect the user to the dashboard or any other authenticated route
-      // For example, you can use React Router to navigate programmatically
-      navigate('/');
-    } catch (error) {
+        // Save user data and tour guide ID in localStorage upon successful login
+        localStorage.setItem('userData', JSON.stringify(body));
+        localStorage.setItem('userId', body.id); // Assuming user ID is available in login response
+        localStorage.setItem('tourGuideId', body.tourGuideId); // Assuming tour guide ID is available in login response
+        const token = body.token;
+        localStorage.setItem('token', token);
+        navigate('/');
+      }else {
+        setError('An error occurred. Please try again.');
+      }
+     } catch (error) {
       console.log('Login error:', error);
       if (error.response && error.response.data && error.response.data.message) {
         setError(error.response.data.message);
@@ -42,12 +48,13 @@ function LoginPage() {
       }
     }
   };
+
   const handlePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   return (
-    <div className="auth-container col-md-6 mx-auto  mt-5 mb-5">
+    <div className="auth-container col-md-6 mx-auto mt-5 mb-5">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -106,12 +113,11 @@ function LoginPage() {
         {error && <div className="alert alert-danger">{error}</div>}
         <button type="submit" className="btn btn-primary">Login</button>
         <div className="text-center mt-3">
-          
           <p>
-            Don't have an account? <Link to="/signup">Back to Signup Page</Link> {/* Link to the signup page */}
+            Don't have an account? <Link to="/signup">Back to Signup Page</Link>
           </p>
           <p>
-            Forgot your password? <Link to="/forgot-password">Reset it here</Link> {/* Link to the forgot password page */}
+            Forgot your password? <Link to="/forgot-password">Reset it here</Link>
           </p>
         </div>
       </form>
