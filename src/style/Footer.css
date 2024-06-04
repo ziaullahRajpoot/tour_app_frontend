@@ -1,71 +1,66 @@
-.site-footer {
-    background-color: #f4f4f4;
-    padding: 20px 0 15px 0;
-    color: #333;
-    font-size: 14px;
-  }
-.footer{
-  --bs-bg-opacity: 1;
-  background-color: rgb(248 249 250 / 73%) !important;
+/* Footer.css */
+.footer {
+  background-color: #343a40;
+  color: #fff;
+  padding-top: 30px;
+  animation: fadeIn 1s ease-in-out;
+  z-index: 1;
 }
+
+.footer h5 {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+
+.footer p,
+.footer ul,
+.footer a {
+  font-size: 1rem;
+  color: #adb5bd;
+}
+
+.footer a {
+  text-decoration: none; /* Remove underline */
+}
+
+.footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
   
-  .footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    max-width: 1200px;
-    margin: auto;
+  
+  transition: color 0.5s ease;
+}
+
+.footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer .text-center {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.footer .text-center a {
+  color: #ffc107; /* Change text color */
+}
+
+.footer .text-center a:hover {
+  color: #fff; /* Change hover color */
+  text-decoration: underline; /* Add underline on hover */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .footer-section h6 {
-    margin-bottom: 20px;
+  to {
+    opacity: 1;
   }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li a {
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .footer-bottom {
-    text-align: center;
-    border-top: 1px solid #ddd;
-    padding-top: 25px;
-  }
-  
-  @media (max-width: 768px) {
-    .footer-content {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .footer-section {
-      margin-bottom: 20px;
-    }
-  
-    .footer-section h6 {
-      text-align: center;
-    }
-  
-    .footer-bottom p {
-      font-size: 12px;
-    }
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .fade-in {
-    animation: fadeIn 0.5s ease forwards;
-    margin-top: auto;
-  }
-  
+}

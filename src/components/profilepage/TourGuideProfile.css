@@ -2,6 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    z-index: 1;
+    background-color: #f5f5f5;
   }
   
   .tour-guide-profile-container {
@@ -201,6 +203,35 @@
     border-top: 1px solid rgba(128, 128, 128, 0.714);
     /* border-radius: 5px; Rounded corners for message items */
   }
+
+  /* TourGuideProfile.css */
+.feedback-section {
+  margin-top: 20px;
+}
+
+.feedback-items {
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
+.feedback-item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.feedback-item:last-child {
+  border-bottom: none;
+}
+
+.feedback-item .rating {
+  font-weight: bold;
+}
+
+.feedback-item .comment {
+  margin-top: 5px;
+}
+
 
   /* Ensure the profile and inbox adjust correctly on smaller screens */
 @media (max-width: 1024px) {

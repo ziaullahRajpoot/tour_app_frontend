@@ -50,7 +50,7 @@
   }
   
   .card-body {
-    padding: 1.5rem !important;
+    padding: .5rem !important;
   }
   
   .card-title {
@@ -97,6 +97,7 @@
   .card {
     border: none;
     overflow: hidden;
+    padding: 0.5rem;
   }
   
   .card-title a {
@@ -127,7 +128,7 @@
 
 @media (min-width: 768px) {
   .card-img-top-container {
-    height: 300px; /* Set a fixed height for the container on desktop */
+    height: 250px; /* Set a fixed height for the container on desktop */
   }
   .homepage {
     padding: 5rem;

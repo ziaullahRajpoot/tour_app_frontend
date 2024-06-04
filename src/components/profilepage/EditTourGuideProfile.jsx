@@ -11,10 +11,10 @@ function EditTourGuideProfile() {
   const location = useLocation();
   const tourGuide = location.state.data;
 
-  const [profile, setProfile] = useState(tourGuide.profile);
+  const [profile, setProfile] = useState(tourGuide.profile ?? '');
   const [name, setName] = useState(`${tourGuide.firstName} ${tourGuide.lastName}`);
-  const [description, setDescription] = useState(tourGuide.description);
-  const [bio, setBio] = useState(tourGuide.bio);
+  const [description, setDescription] = useState(tourGuide.description ?? undefined);
+  const [bio, setBio] = useState(tourGuide.bio??undefined);
   const [portfolio, setPortfolio] = useState(tourGuide.portfolio ?? []);
 
   const [newPortfolio, setNewPortfolio] = useState([]);
@@ -263,7 +263,7 @@ function EditTourGuideProfile() {
       </div>
 
 
-      <div className="bookings-section col-12 col-md-4">
+      {/* <div className="bookings-section col-12 col-md-4">
         <h3 className="section-title">Upcoming Bookings</h3>
         <div className="bookings-list">
           {tourGuide?.bookings?.map((booking, index) => (
@@ -278,7 +278,7 @@ function EditTourGuideProfile() {
             </div>
           )) ?? []}
         </div>
-      </div>
+      </div> */}
     </div>
 
   );

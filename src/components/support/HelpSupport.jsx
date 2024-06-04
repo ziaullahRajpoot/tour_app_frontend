@@ -76,7 +76,7 @@ const HelpSupport = () => {
         <section>
           <h2>Submit a Request</h2>
           <p>If you have a specific issue or request that is not covered in the FAQ, please fill out the form below, and our support team will get back to you as soon as possible.</p>
-          <form className="support-form col-11 col-md-8">
+          <form className="support-form col-12 ">
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" name="name" required />
 

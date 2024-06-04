@@ -17,6 +17,7 @@
 }
 .card-body{
   padding: 0px;
+  text-align: left;
 }
 .carousel-caption h3{
   color: #f7f6f6 !important;

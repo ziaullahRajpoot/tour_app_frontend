@@ -18,12 +18,28 @@ const SAMPLE_PORTFOLIO_IMAGE_URLS = [
   'https://via.placeholder.com/300?text=Image+3'
 ];
 
+// Component to render stars
+const StarRating = ({ rating }) => {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 !== 0;
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+  return (
+    <div className="star-rating">
+      {'★'.repeat(fullStars)}
+      {halfStar && '☆'}
+      {'☆'.repeat(emptyStars)}
+    </div>
+  );
+};
+
 function Profile() {
   const { userId } = useParams();
   const [tourGuideDetails, setTourGuideDetails] = useState(null);
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [randomFeedbacks, setRandomFeedbacks] = useState([]);
 
   useEffect(() => {
     const fetchTourGuideDetails = async () => {
@@ -69,6 +85,26 @@ function Profile() {
       document.body.classList.remove('modal-open');
     }
   }, [modalOpen]);
+
+  useEffect(() => {
+    // Generate random feedbacks
+    const generateRandomFeedbacks = () => {
+      const feedbacks = [];
+      for (let i = 0; i < 10; i++) {
+        const stars = Math.floor(Math.random() * 5) + 1; // Random rating between 1 and 5
+        const comment = `Random comment ${i+1}`;
+        feedbacks.push({ stars, comment });
+      }
+      setRandomFeedbacks(feedbacks);
+    };
+    generateRandomFeedbacks();
+  }, []);
+
+  const calculateAverageRating = () => {
+    if (randomFeedbacks.length === 0) return 0;
+    const totalStars = randomFeedbacks.reduce((acc, feedback) => acc + feedback.stars, 0);
+    return totalStars / randomFeedbacks.length;
+  };
 
   if (error) {
     return <div className="alert alert-danger">{error}</div>;
@@ -118,6 +154,8 @@ function Profile() {
   const profilePicture = profile ? profile : SAMPLE_PROFILE_IMAGE_URL;
   const portfolioItems = TourGuide[0]?.images.length ? TourGuide[0].images : SAMPLE_PORTFOLIO_IMAGE_URLS.map(url => ({ type: 'image', url }));
 
+  const averageRating = calculateAverageRating();
+
   return (
     <div className="container tour-guide-page">
       <div className="tour-guide-profile-container">
@@ -126,9 +164,8 @@ function Profile() {
             <img src={profilePicture} alt={`${firstName} ${lastName}`} className="profile-picture" />
             <div className="profile-info">
               <h2>{firstName} {lastName}</h2>
-             
               <p className="bio">{bio}</p>
-              <Link to={`/tour-guide/${userId}/edit`} className="btn btn-primary">Edit Profile</Link>
+              <Link to={`/tour-guide/${userId}/edit`} className="btn btn-primary" state={{ data: tourGuideDetails }}>Edit Profile</Link>
             </div>
           </div>
 
@@ -150,20 +187,21 @@ function Profile() {
             </Slider>
           </div>
           <div className="feedback-section">
-            <h3>Feedback</h3>
+            <h3>
+              Feedback <StarRating rating={averageRating} />
+            </h3>
             <div className="feedback-items">
-              {(tourGuideDetails.feedback?.map((feedback, index) => (
+              {randomFeedbacks.map((feedback, index) => (
                 <div key={index} className="feedback-item">
-                  <p className="rating">Rating: {feedback.stars} / 5</p>
+                  <p className="rating"><StarRating rating={feedback.stars} /></p>
                   <p className="comment">{feedback.comment}</p>
                 </div>
-              ))) ?? []}
+              ))}
             </div>
           </div>
         </div>
       </div>
       <InboxComponent messages={tourGuideDetails.messages || []} />
-
     </div>
   );
 }
